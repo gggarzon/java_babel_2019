@@ -7,17 +7,17 @@ import model.Pedido;
 
 public class Facturacion {
 	static Scanner sc = new Scanner(System.in);
-	static ArrayList <Pedido> pedidos = new ArrayList<>(5);
+	static ArrayList <Pedido> pedidos = new ArrayList<>();
 	public static void main(String[] args) {
 		System.out.println("Introduce datos del pedido:");
 		datos();
-		facturacion();
+		System.out.println("La facturacion es: "+facturacion());
 	}
 		public static void datos() {
 			String nombre;
 			String unidades;
 			String precio;
-			for(int i = 0; i<2;i++ ) {
+			for(int i = 0; i<5;i++ ) {
 				System.out.println("Introduce el nombre del producto:");
 				nombre = sc.nextLine();
 				System.out.println("Introduce unidades:");
@@ -30,14 +30,16 @@ public class Facturacion {
 				pedidos.add(new Pedido(nombre,unidades2,precio2));
 			}
 	}
-		public static void facturacion() {
+		public static double facturacion() {
 			double suma = 0;
 			
 			for (int i=0; i <pedidos.size();i++) {
 				suma = suma + (pedidos.get(i).getPrecio() * pedidos.get(i).getUnidades());
 			}
+			return suma;
 			
-			System.out.println("La facturacion es: "+ suma);
 		}
-
+		private static Pedido [] convertirArray (ArrayList <Pedido> pedidos) {
+			return pedidos.toArray(new Pedido[0]);
+		}
 }
